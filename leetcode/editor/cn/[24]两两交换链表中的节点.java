@@ -58,14 +58,20 @@ class P24SwapNodesInPairs {
         public ListNode swapPairs(ListNode head) {
             // 创建一个新的虚拟头节点
             ListNode dummy = new ListNode();
-            // 虚拟头节点的下一个节点指向原链表的头节点
+            // 让该虚拟头节点的下一个节点指向原链表的头节点
             dummy.next = head;
-            // 创建一个指向虚拟头节点的指针
+            // 定义一个指针，指向当前的虚拟头节点
             ListNode current = dummy;
-            while (current.next != null && current.next.next != null) {
-                ListNode temp = current.next; // 保存当前节点的下一个节点（即保存原始的头节点）
-                current.next = current.next.next;
+            while (current.next != null && current.next.next != null){
+                // 保存这一组相邻节点的第一个节点
+                ListNode temp = current.next;
+                // 保存下一组的第一个节点
+                ListNode temp1 = current.next.next.next;
 
+                current.next = temp.next;
+                temp.next.next = temp;
+                temp.next = temp1;
+                current = temp;
             }
             return dummy.next;
         }
