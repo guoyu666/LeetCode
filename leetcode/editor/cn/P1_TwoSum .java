@@ -73,8 +73,10 @@ class P1_TwoSum {
 			HashMap<Integer, Integer> map = new HashMap<>();
 
 			for (int i = 0; i < nums.length; i++) {
-				if (map.containsKey(target - nums[i])){
+				if (map.containsKey(target - nums[i])){	// 说明找到了当前元素以及另一个元素的和等于目标值
+					// 找到了另一个元素，将元素的下标索引存入数组中并返回
 					result[0] = map.get(target - nums[i]);
+					// 将当前元素的下标索引存入数组中
 					result[1] = i;
 				}
 				else
