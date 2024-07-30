@@ -39,9 +39,8 @@ package editor.cn;
 
 /**
  * 反转字符串 II
- *
  * @author GuoYu
- * @date 2024-07-31 00:53:04
+ * @date 2024-07-31 02:25:46
  */
 class P541_ReverseStringIi {
     public static void main(String[] args) {
@@ -65,19 +64,19 @@ class P541_ReverseStringIi {
             }
             return new String(chars);
         }
-    }
 
-    //leetcode submit region end(Prohibit modification and deletion)
-    // 自定义反转字符串的方法
-    public void reverseString(char[] s, int start, int end) {
-        int i = start;
-        int j = end;
-        while (i < j) {
-            char temp = s[i];
-            s[i] = s[j];
-            s[j] = temp;
-            i++;
-            j--;
+        public void reverseString(char[] s, int start, int end) {
+            int i = start;
+            int j = end;
+            while (i < j) {
+                char temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+                i++;
+                j--;
+            }
         }
     }
+//leetcode submit region end(Prohibit modification and deletion)
+
 }
