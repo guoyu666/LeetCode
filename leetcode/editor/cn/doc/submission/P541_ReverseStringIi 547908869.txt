@@ -1,0 +1,30 @@
+    class Solution {
+        public String reverseStr(String s, int k) {
+            // 计算字符串的长度
+            int n = s.length();
+            // 将字符串s转换为字符数组，因为我们后面的反转函数传递的参数是字符数组
+            char[] chars = s.toCharArray();
+            // 遍历字符串，每计数2k个字符，就反转这2k个字符中的前k个字符
+            for (int i = 0; i < n; i += 2*k){
+                if (i + k <= n){
+                    reverseString(chars,i,i+k-1);
+                }
+                else {
+                    reverseString(chars,i,n-1);
+                }
+            }
+            return new String(chars);
+        }
+
+        public void reverseString(char[] s, int start, int end) {
+            // 反转字符串中从start到end的字符
+            for (int i = start, j = end; i < j; i++, j--) {
+                char temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+
+//runtime:1 ms
+//memory:42.4 MB

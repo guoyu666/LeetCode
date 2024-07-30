@@ -1,0 +1,33 @@
+    class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            // 创建一个空的二维数组
+            ArrayList<List<Integer>> res = new ArrayList<>();
+            // 数组预先排序
+            Arrays.sort(nums);
+            // 循环遍历
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] > 0) break;
+                if (i > 0 && nums[i] == nums[i - 1]) continue;
+                // 定义双支针的初始位置
+                int left = i + 1, right = nums.length - 1;
+                while (left < right) {
+                    if (nums[i] + nums[left] + nums[right] == 0) {
+                        res.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                        // 移动left指针以及right指针
+                        left++;
+                        right--;
+                        // 跳过left，right指针指向的重复元素，因为这里执行之前的上一步中left已经++，right已经--
+                        // 所以判条件是left == left -1, right == right + 1
+                        while (left < right && nums[left] == nums[left - 1]) left++;
+                        while (left < right && nums[right] == nums[right + 1]) right--;
+                    } else if (nums[i] + nums[left] + nums[right] < 0) {
+                        left++;
+                    } else right--;
+                }
+            }
+            return res;
+        }
+    }
+
+//runtime:32 ms
+//memory:50.3 MB
