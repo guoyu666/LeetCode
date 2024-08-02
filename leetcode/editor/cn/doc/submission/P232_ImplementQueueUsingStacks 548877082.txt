@@ -1,0 +1,49 @@
+    class MyQueue {
+        private Stack<Integer> inStack;
+        private Stack<Integer> outStack;
+
+        public MyQueue() {
+            inStack = new Stack<>();
+            outStack = new Stack<>();
+        }
+
+        public void push(int x) {
+            inStack.push(x);
+
+        }
+
+        public int pop() {
+            inToOut();
+            return outStack.pop();
+
+        }
+
+        public int peek() {
+            inToOut();
+            return (int) outStack.peek();
+        }
+
+        public boolean empty() {
+            return inStack.isEmpty() && outStack.isEmpty();
+
+        }
+
+        private void inToOut() { // 将 inStack 中的元素全部转移到 outStack 中
+            if (!outStack.isEmpty())
+                return;
+            while (!inStack.isEmpty()) {
+                outStack.push(inStack.pop());
+            }
+        }
+    }
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
+
+//runtime:0 ms
+//memory:40.2 MB

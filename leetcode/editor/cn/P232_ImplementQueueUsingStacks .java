@@ -65,39 +65,55 @@ myQueue.empty(); // return false
 
 package editor.cn;
 
+import java.util.Stack;
+
 /**
  * 用栈实现队列
  * @author GuoYu
- * @date 2024-08-02 10:48:34
+ * @date 2024-08-02 11:26:25
  */
 public class P232_ImplementQueueUsingStacks{
 	 public static void main(String[] args) {
 	 	 //测试代码
-	 	 Solution solution = new P232_ImplementQueueUsingStacks().new Solution();
+	 	 MyQueue solution = new P232_ImplementQueueUsingStacks().new MyQueue();
 	 }
 	 
 //力扣代码
 //leetcode submit region begin(Prohibit modification and deletion)
 class MyQueue {
+    Stack<Integer> inStack;
+    Stack<Integer> outStack;
 
     public MyQueue() {
-
+        inStack = new Stack<>();
+        outStack = new Stack<>();
     }
-    
+
     public void push(int x) {
-
+        inStack.push(x);
     }
-    
+
     public int pop() {
-
+        inToOut();
+        return outStack.pop();
     }
-    
+
     public int peek() {
-
+        inToOut();
+        return outStack.peek();
     }
-    
-    public boolean empty() {
 
+    public boolean empty() {
+        return inStack.isEmpty() && outStack.isEmpty();
+    }
+
+    // 将 inStack 中的元素转移到 outStack 中，这样无论peek还是pop顺序都和队列的顺序一致
+    private void inToOut() {
+        if (!outStack.isEmpty())
+            return;
+        while (!inStack.isEmpty()) {
+            outStack.push(inStack.pop());
+        }
     }
 }
 
