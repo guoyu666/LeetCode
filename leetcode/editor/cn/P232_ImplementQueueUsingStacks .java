@@ -72,7 +72,7 @@ import java.util.Stack;
  * @author GuoYu
  * @date 2024-08-02 11:26:25
  */
-public class P232_ImplementQueueUsingStacks{
+class P232_ImplementQueueUsingStacks{
 	 public static void main(String[] args) {
 	 	 //测试代码
 	 	 MyQueue solution = new P232_ImplementQueueUsingStacks().new MyQueue();
