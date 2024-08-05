@@ -77,7 +77,7 @@ class P20_ValidParentheses {
                     stack.push('}');
                 } else if (ch == '[') {
                     stack.push(']');
-                } else if (stack.isEmpty() || stack.peek() != ch) {
+                } else if (stack.isEmpty() || stack.peek() != ch) {	// 运行到这，ch代表的是右括号
                     return false;
                 } else {
                     stack.pop();
