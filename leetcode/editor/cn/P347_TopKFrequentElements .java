@@ -55,32 +55,30 @@ class P347_TopKFrequentElements{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
+		// 定义一个HashMap，用于存储元素和其出现次数
 		HashMap<Integer, Integer> map = new HashMap<>();
+		// 使用加强for循环遍历数组，将元素和其出现次数放入HashMap中
 		for (int num : nums){
-			// 将所有元素的频率存入 map 中，key 为元素，value 为频率
-			// getOrDefault() 方法获取指定 key 对应对 value，如果找不到 key ，则返回设置的默认值
-			map.put(num, map.getOrDefault(num, 0) + 1);
+			map.put(num,map.getOrDefault(num,0) + 1);
 		}
 		// 定义一个优先队列
-		PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>(){
+		PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>(){ // 这里使用匿名内部类
 			@Override
 			public int compare(int[] o1, int[] o2) {
-				return o1[1] - o2[1]; // 根据频率从小大大进行排序
+				return o1[1] - o2[1]; // 按照出现次数从大到小排序
 			}
 		});
-		// 将 map 中的元素存入优先队列中，元素为 [元素，频率]
-		for (int key : map.keySet()){
-			pq.offer(new int[]{key, map.get(key)});
-			// 如果优先队列的大小超过 k ，则弹出队首元素
-			if (pq.size() > k) pq.poll();
+		for (int key : map.keySet()){ // keySet()方法返回所Map集合中所有key值
+			pq.offer(new int[]{key,map.get(key)}); // 将元素和其出现次数封装成数组，放入优先队列中
+			if (pq.size() > k)
+				pq.poll();
 		}
-		// 定义一个数组，用于存放结果
-		int[] result = new int[k];
-		// 从优先队列中倒序取出元素，并存入结果数组中
+		// 定义一个数组，用于存储前k个高频元素
+		int[] res = new int[k];
 		for (int i = k - 1; i >= 0; i--){
-			result[i] = pq.poll()[0];
+			res[i] = pq.poll()[0];
 		}
-		return result;
+		return res;
 	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
