@@ -46,9 +46,9 @@ import java.util.Queue;
 /**
  * 二叉树的层序遍历
  * @author GuoYu
- * @date 2024-08-12 11:26:25
+ * @date 2024-08-12 15:36:47
  */
-public class P102_BinaryTreeLevelOrderTraversal {
+class P102_BinaryTreeLevelOrderTraversal {
     public static void main(String[] args) {
         //测试代码
         Solution solution = new P102_BinaryTreeLevelOrderTraversal().new Solution();
@@ -74,17 +74,16 @@ public class P102_BinaryTreeLevelOrderTraversal {
      */
     class Solution {
         public List<List<Integer>> levelOrder(TreeNode root) {
-            // 创建队列，用于存储节点
-			Queue<TreeNode> queue = new  LinkedList<>();
-			// 创建列表，用于存储最后的结果
-			List<List<Integer>> res = new ArrayList<>();
-			if (root != null)
-				queue.add(root);
-			while(!queue.isEmpty()){
-                // 每次循环都会创建一个临时列表，用于存储当前层的打印结果
-                List<Integer> tmp = new ArrayList<>();
-                for (int i = queue.size(); i > 0; i--){
-                    // 队首元素出队，将其值添加到临时列表中的尾部
+            // 创建一个队列，用于存放根节点
+            Queue<TreeNode> queue = new LinkedList<>();
+            // 创建一个列表，用于存放结果
+            ArrayList<List<Integer>> res = new ArrayList<>();
+            if (root != null)
+                queue.add(root);
+            while (!queue.isEmpty()){
+                // 创建一个临时列表，用于存放当前层节点的值
+                ArrayList<Integer> tmp = new ArrayList<>();
+                for (int i = queue.size(); i > 0; i--) {
                     TreeNode node = queue.poll();
                     tmp.add(node.val);
                     if (node.left != null)
@@ -92,10 +91,11 @@ public class P102_BinaryTreeLevelOrderTraversal {
                     if (node.right != null)
                         queue.add(node.right);
                 }
+                // 将当前层的临时列表添加到结果列表中
                 res.add(tmp);
             }
             return res;
-		}
+        }
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
@@ -114,5 +114,4 @@ public class P102_BinaryTreeLevelOrderTraversal {
             this.right = right;
         }
     }
-
 }
