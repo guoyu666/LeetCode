@@ -73,23 +73,30 @@ class P107_BinaryTreeLevelOrderTraversalIi{
  */
 class Solution {
 	public List<List<Integer>> levelOrderBottom(TreeNode root) {
-		Deque<TreeNode> deque = new LinkedList<>();
-		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		if (root == null) return res;
-		deque.offer(root);
-		while (!deque.isEmpty()) {
-			List<Integer> temp = new ArrayList<>(); // 存放一层的结点值
-			// 对一层进行遍历
-			int len = deque.size();
-			for (int i = 0; i < len; i++) {
-				TreeNode node = deque.poll();
-				temp.add(node.val);
-				if (node.left != null) deque.offer(node.left);
-				if (node.right != null) deque.offer(node.right);
-			}
-			res.add(temp);
+		// 创建一个队列，用于存储节点
+		Deque<TreeNode> queue = new LinkedList<>();
+		// 创建一个结果列表，用于存储结果
+		List<List<Integer>> res = new ArrayList<>();
+		if (root != null) {
+			queue.add(root);
 		}
-		// 翻转顺序
+		while (!queue.isEmpty()){
+			// 创建一个临时列表，用于存储当前层的节点值
+			ArrayList<Integer> tmp = new ArrayList<>();
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				TreeNode node = queue.poll();
+				tmp.add(node.val);
+				if (node.left != null) {
+					queue.add(node.left);
+				}
+				if (node.right != null) {
+					queue.add(node.right);
+				}
+			}
+			res.add(tmp);
+		}
+		// 结果列表需要反转，因为我们是从底层开始遍历的
 		Collections.reverse(res);
 		return res;
 	}

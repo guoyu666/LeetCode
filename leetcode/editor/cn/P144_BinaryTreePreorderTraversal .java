@@ -103,7 +103,8 @@ class P144_BinaryTreePreorderTraversal {
 
         public void preorder(TreeNode root) {
             if (root == null)
-                return;
+                return; // return;代表当前节点为空，则不再继续遍历
+            // 运行到这里代表当前节点不为空，则将当前节点的值添加到结果数组中
             result.add(root.val);
             preorder(root.left);
             preorder(root.right);
